@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vuln.top/"/>
-  <updated>2019-10-16T12:19:46.745Z</updated>
+  <updated>2020-06-17T19:33:50.000Z</updated>
   <id>https://vuln.top/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://vuln.top/2020/06/18/C%20S%201%20d48259125c554eabba032eab732a4008/"/>
+    <id>https://vuln.top/2020/06/18/C S 1 d48259125c554eabba032eab732a4008/</id>
+    <published>2020-06-17T19:33:50.000Z</published>
+    <updated>2020-06-17T19:33:50.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="C-S-渗透测试-1"><a href="#C-S-渗透测试-1" class="headerlink" title="C/S 渗透测试 1"></a>C/S 渗透测试 1</h1><h2 id="1-注册表内的敏感数据"><a href="#1-注册表内的敏感数据" class="headerlink" title="1.注册表内的敏感数据"></a>1.注册表内的敏感数据</h2><p><a href="https://sourceforge.net/projects/regshot/" target="_blank" rel="noopener">https://sourceforge.net/projects/regshot/</a></p><p><img src="C%20S%201%20d48259125c554eabba032eab732a4008/Untitled.png" alt="C%20S%201%20d48259125c554eabba032eab732a4008/Untitled.png"></p><h2 id="内存中的信息泄漏"><a href="#内存中的信息泄漏" class="headerlink" title="内存中的信息泄漏"></a>内存中的信息泄漏</h2><p><a href="https://processhacker.sourceforge.io/" target="_blank" rel="noopener">https://processhacker.sourceforge.io/</a></p><p><img src="C%20S%201%20d48259125c554eabba032eab732a4008/Untitled%201.png" alt="C%20S%201%20d48259125c554eabba032eab732a4008/Untitled%201.png"></p><p><img src="C%20S%201%20d48259125c554eabba032eab732a4008/Untitled%202.png" alt="C%20S%201%20d48259125c554eabba032eab732a4008/Untitled%202.png"></p><p><img src="C%20S%201%20d48259125c554eabba032eab732a4008/Untitled%203.png" alt="C%20S%201%20d48259125c554eabba032eab732a4008/Untitled%203.png"></p><p><img src="C%20S%201%20d48259125c554eabba032eab732a4008/Untitled%204.png" alt="C%20S%201%20d48259125c554eabba032eab732a4008/Untitled%204.png"></p><p><img src="C%20S%201%20d48259125c554eabba032eab732a4008/Untitled%205.png" alt="C%20S%201%20d48259125c554eabba032eab732a4008/Untitled%205.png"></p><h2 id="拦截TCP流量"><a href="#拦截TCP流量" class="headerlink" title="拦截TCP流量"></a>拦截TCP流量</h2><p><a href="https://sourceforge.net/projects/echomirage.oldbutgold.p/" target="_blank" rel="noopener">https://sourceforge.net/projects/echomirage.oldbutgold.p/</a></p><p>新建一个Rules</p><p><img src="C%20S%201%20d48259125c554eabba032eab732a4008/Untitled%206.png" alt="C%20S%201%20d48259125c554eabba032eab732a4008/Untitled%206.png"></p><p>设置想要注入的程序</p><p><img src="C%20S%201%20d48259125c554eabba032eab732a4008/Untitled%207.png" alt="C%20S%201%20d48259125c554eabba032eab732a4008/Untitled%207.png"></p><p><img src="C%20S%201%20d48259125c554eabba032eab732a4008/Untitled%208.png" alt="C%20S%201%20d48259125c554eabba032eab732a4008/Untitled%208.png"></p><h2 id="反编译-NET"><a href="#反编译-NET" class="headerlink" title="反编译.NET"></a>反编译.NET</h2><p>.Net Reflector</p><p><img src="C%20S%201%20d48259125c554eabba032eab732a4008/Untitled%209.png" alt="C%20S%201%20d48259125c554eabba032eab732a4008/Untitled%209.png"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;C-S-渗透测试-1&quot;&gt;&lt;a href=&quot;#C-S-渗透测试-1&quot; class=&quot;headerlink&quot; title=&quot;C/S 渗透测试 1&quot;&gt;&lt;/a&gt;C/S 渗透测试 1&lt;/h1&gt;&lt;h2 id=&quot;1-注册表内的敏感数据&quot;&gt;&lt;a href=&quot;#1-注册表内的敏感数
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>豌豆杯入学ctf</title>
@@ -444,29 +465,6 @@
         &lt;!--markdown--&gt;自行安装编译Linux软件过程中会执行三个步骤：./configure,make,make install。这三个步骤在安装过程中到底起到什么作用，先前一直糊里糊涂的，今天就来一起学习下。
 
 &lt;p&gt;./configure(配置）&lt;br&gt;configu
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>apache 使用 mysql基本身份验证</title>
-    <link href="https://vuln.top/2019/02/21/38/"/>
-    <id>https://vuln.top/2019/02/21/38/</id>
-    <published>2019-02-21T03:45:05.838Z</published>
-    <updated>2019-02-21T03:45:05.848Z</updated>
-    
-    <content type="html"><![CDATA[<!--markdown-->第一步安装所有需要的组建(mysql,apache,apache_mysql认证)<p><code>yum install -y mysql-server mod_auth_mysql mysql httpd</code></p><p><img src="http://ovgfhrbzx.bkt.clouddn.com/18-3-16/2498692.jpg" alt></p><p>首先配置mysql 账号密码（这里我们就设置全明文验证）<br>设置mysql密码 <code>mysqladmin -u root password 123456</code><br>如果mysql 密码忘记了可以用这个命令<code>mysqladmin -u root flush-privileges password "newpassword"</code></p><p>登陆mysql<br><code>mysql -u root -p</code><br>创建数据库<br><code>create database httpauth;(一定要加;）</code><br>使用数据库<br><code>use httpauth;</code><br>创建表<br><code>create table auth(name char(25),pwd char(25));</code><br>写入auth数据库<br><code>INSERT INTO auth(name,pwd) VALUES('user03',encrypt(111));</code><br><img src="http://ovgfhrbzx.bkt.clouddn.com/18-3-16/64913229.jpg" alt></p><p>我们访问到/etc/httpd/conf.d这个目录<br><img src="http://ovgfhrbzx.bkt.clouddn.com/18-3-16/61990036.jpg" alt></p><p>配置auth_mysql.conf<br>在最下面配置<br><img src="http://ovgfhrbzx.bkt.clouddn.com/18-3-16/61300409.jpg" alt></p><p>为什么我们在auth_mysql.conf 配置 主策略能读到<br><img src="http://ovgfhrbzx.bkt.clouddn.com/18-3-16/88433178.jpg" alt></p><p>启动服务<br><code>service httpd start</code></p><p><img src="http://ovgfhrbzx.bkt.clouddn.com/18-3-16/56655948.jpg" alt></p><p><img src="http://ovgfhrbzx.bkt.clouddn.com/18-3-16/82301276.jpg" alt></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;!--markdown--&gt;第一步安装所有需要的组建(mysql,apache,apache_mysql认证)
-&lt;p&gt;&lt;code&gt;yum install -y mysql-server mod_auth_mysql mysql httpd&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img 
       
     
     </summary>
