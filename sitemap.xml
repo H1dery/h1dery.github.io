@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://vuln.top/2020/07/14/OSCP%20Buffer%20Overflows%20brainpan%20473f8d6971d444c2a219b3ce9b976cd9/</loc>
+    
+    <lastmod>2020-07-14T05:20:25.892Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://vuln.top/2020/06/18/HTTP%20f73fc507cac54ad8a67d9e8bbe5f8f04/</loc>
     
     <lastmod>2020-06-18T09:42:36.485Z</lastmod>
