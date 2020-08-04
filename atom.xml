@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vuln.top/"/>
-  <updated>2020-07-15T13:24:53.174Z</updated>
+  <updated>2020-08-04T08:50:14.038Z</updated>
   <id>https://vuln.top/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://vuln.top/2020/08/04/burpjs/"/>
+    <id>https://vuln.top/2020/08/04/burpjs/</id>
+    <published>2020-08-04T00:48:16.000Z</published>
+    <updated>2020-08-04T08:50:14.038Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="burp-爆破-JS加密"><a href="#burp-爆破-JS加密" class="headerlink" title="burp 爆破 JS加密"></a>burp 爆破 JS加密</h1><p>首先右键登录按钮属性查看html源代码，发现id=’rsa’</p><p><img src="https://vuln.top/2020/08/04/burpjs/Untitled.png" alt="https://vuln.top/2020/08/04/burpjs/Untitled.png"></p><p>ctrl+shift+f 查找rsa描点，发现调用了strEnr</p><p><img src="https://vuln.top/2020/08/04/burpjs/Untitled%201.png" alt="https://vuln.top/2020/08/04/burpjs/Untitled%201.png"></p><p>继续查找strEnr，并进入函数</p><p><img src="https://vuln.top/2020/08/04/burpjs/Untitled%202.png" alt="https://vuln.top/2020/08/04/burpjs/Untitled%202.png"></p><p>对加密函数添加断点进行判断，发现123123账号密码进入了此处，且3个key分别为1，2，3。</p><p><img src="https://vuln.top/2020/08/04/burpjs/Untitled%203.png" alt="https://vuln.top/2020/08/04/burpjs/Untitled%203.png"></p><p>我们直接控制台调用，尝试加密解密</p><p><img src="https://vuln.top/2020/08/04/burpjs/Untitled%204.png" alt="https://vuln.top/2020/08/04/burpjs/Untitled%204.png"></p><p>保存des.js到本地</p><p><img src="https://vuln.top/2020/08/04/burpjs/Untitled%205.png" alt="https://vuln.top/2020/08/04/burpjs/Untitled%205.png"></p><p>既然找到了加密解密函数现在就是通过burp调用函数使其加解密,修改phantomjs_server.js</p><p><img src="https://vuln.top/2020/08/04/burpjs/Untitled%206.png" alt="https://vuln.top/2020/08/04/burpjs/Untitled%206.png"></p><p>载入server.js</p><p><img src="https://vuln.top/2020/08/04/burpjs/Untitled%207.png" alt="https://vuln.top/2020/08/04/burpjs/Untitled%207.png"></p><p>burp连接server端口，test，我们现在已经可以成功加密了</p><p><img src="https://vuln.top/2020/08/04/burpjs/Untitled%208.png" alt="https://vuln.top/2020/08/04/burpjs/Untitled%208.png"></p><p>配置burp intruder，添加变量</p><p><img src="https://vuln.top/2020/08/04/burpjs/Untitled%209.png" alt="https://vuln.top/2020/08/04/burpjs/Untitled%209.png"></p><p>选择Custom ，1为用户</p><p><img src="https://vuln.top/2020/08/04/burpjs/Untitled%2010.png" alt="https://vuln.top/2020/08/04/burpjs/Untitled%2010.png"></p><p>2为密码</p><p><img src="https://vuln.top/2020/08/04/burpjs/Untitled%2011.png" alt="https://vuln.top/2020/08/04/burpjs/Untitled%2011.png"></p><p>添加payload加密</p><p><img src="https://vuln.top/2020/08/04/burpjs/Untitled%2012.png" alt="https://vuln.top/2020/08/04/burpjs/Untitled%2012.png"></p><p>start attack，成功爆破</p><p><img src="https://vuln.top/2020/08/04/burpjs/Untitled%2013.png" alt="https://vuln.top/2020/08/04/burpjs/Untitled%2013.png"></p><p>尝试解密下加密字符串，成功</p><p><img src="https://vuln.top/2020/08/04/burpjs/Untitled%2014.png" alt="https://vuln.top/2020/08/04/burpjs/Untitled%2014.png"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;burp-爆破-JS加密&quot;&gt;&lt;a href=&quot;#burp-爆破-JS加密&quot; class=&quot;headerlink&quot; title=&quot;burp 爆破 JS加密&quot;&gt;&lt;/a&gt;burp 爆破 JS加密&lt;/h1&gt;&lt;p&gt;首先右键登录按钮属性查看html源代码，发现id=’rsa’
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>2019国庆武夷山骑行</title>
@@ -432,28 +453,6 @@
 &lt;p&gt;不知道是不是因为更新了一波系统才炸的。&lt;/p&gt;
 &lt;p&gt;一开始是一个ruby版本的问题需要升级到ruby2.5.1&lt;/p&gt;
 &lt;p&gt;通过这条命令解决了:&lt;
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>记录下一道web题</title>
-    <link href="https://vuln.top/2019/02/21/124/"/>
-    <id>https://vuln.top/2019/02/21/124/</id>
-    <published>2019-02-21T04:00:22.849Z</published>
-    <updated>2019-02-23T15:14:20.326Z</updated>
-    
-    <content type="html"><![CDATA[<!--markdown-->题目名:真假难辨<p>点击页面的时候我发现这个页面没有表单。。<br><img src="http://118.126.66.150/52sec/10/488159467.png" alt="3B724733-D6B0-47F8-850A-5649E9161A10.png"><br>习惯性的扫了下目录文件<br>发现有一个.test.php.swp</p><p><img src="http://118.126.66.150/52sec/10/1807292108.png" alt="1A5BE925-BEAF-46D1-9812-E66357A912F2.png"><br><img src="http://118.126.66.150/52sec/10/1796908624.png" alt="E89D4D93-F91D-4CD3-95F6-DA70F6726B98.png"><br>发现mysql账号密码<br>一开始以为是构造表单提交到test.php里<br>但是后来发现没啥用,没错我就说着玩的…<br><img src="http://118.126.66.150/52sec/10/4172375584.png" alt="55179070-A281-40C9-92D8-D76AA9BDD339.png"><br>没办法get下index.php，发现有个hint访问index22222.php,这个才是真正的页面和原来页面长得一样,但是可以递交<br>我估计是万能密码sqlmap跑了下还真跑到了<br><img src="http://118.126.66.150/52sec/10/3249539132.png" alt="F1A78C66-CB2E-4647-B175-002F0357FCAB.png"><br>但是数据库,本地文件读取,什么的什么都没有权限,我在这上面弄了好久.<br>只能手工构造万能密码<br>过滤了<code>or,and,select</code>等…<br>最后试到<br><img src="http://118.126.66.150/52sec/10/3505957255.png" alt="507B8FEC-CA73-4AD3-A3C0-768B6FCEB76D.png"><br><code>&#39;&#39;=&#39;</code>成功绕过…<br><img src="http://118.126.66.150/52sec/10/161917790.png" alt="6D0584E7-5F95-45DA-B708-A8240987D66B.png"><br>后面就比较简单了闭着眼睛都知道是文件包含,用<code>php://filter</code>成功绕过<br>i&gt; php://filter/read=convert.base64-encode/resource=flag123456789.php</p><p><img src="http://118.126.66.150/52sec/10/1227329903.png" alt="5D1EEF8D-0C1E-48A5-9F05-B7EC51C47EAD.png"><br>解开base64获得flag<br>说实话不难,但是考了好几个知识点万能密码绕过waf,php伪协议文件包含</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;!--markdown--&gt;题目名:真假难辨
-&lt;p&gt;点击页面的时候我发现这个页面没有表单。。&lt;br&gt;&lt;img src=&quot;http://118.126.66.150/52sec/10/488159467.png&quot; alt=&quot;3B724733-D6B0-47F8-850A-5649
       
     
     </summary>
