@@ -266,7 +266,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.1k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">716</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -401,42 +401,42 @@ height:50vh;
 <h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><p>先准备一个模拟器或安卓手机，配置好<code>BurpSuite</code>代理，可以抓取到如下数据包，Request和Response都已加密。</p>
 <p><img src="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled.png" alt="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled.png"></p>
 <p>用Jeb3打开Apk，进入Bytecode菜单，点击下方的字符串，搜索<code>dataStr</code>双击进入。（为啥要搜索它? 因为它在提交数据中是个协议头, 添加这些参数的时候想必都会在一个代码块, 所以加密函数也可能在附近。）</p>
-<p>![<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 1.png](<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 1.png)</p>
+<p><img src="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%201.png" alt="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%201.png"></p>
 <p>进入后我们可以看到<code>smali</code>代码，在可疑的地方通过Ctrl+b可以下断点进行调试。</p>
-<p>![<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 2.png](<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 2.png)</p>
+<p><img src="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%202.png" alt="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%202.png"></p>
 <p>模拟器内需要先打开APP，然后点击上方虫子按钮，可以看到如下图所示，点击附上。</p>
 <p>注意: 如果附加和调试对话框中没有模拟器的话, 你需要将模拟器目录下的adb.exe路径添加进系统环境变量path中, 如果已经添加却无法搜索到, 打开任务管理器结束adb.exe进程, 重启模拟器应该就可以了</p>
-<p>![<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 3.png](<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 3.png)</p>
+<p><img src="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%203.png" alt="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%203.png"></p>
 <p>在模拟器内点击登陆后，JEB模拟器右上方VM/局部变量会增加几个值，但是我们无法直接看懂。</p>
-<p>![<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 4.png](<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 4.png)</p>
+<p><img src="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%204.png" alt="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%204.png"></p>
 <p>我们需要修改Type类型，从int改为<code>string</code>，修改后我们可以看到变量当前处在内存中的值，F6可以进行单步调试，局部变量的值也会随之改变。</p>
-<p>![<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 5.png](<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 5.png)</p>
+<p><img src="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%205.png" alt="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%205.png"></p>
 <p>我们已经了解了如何进行断点调试，通过分析java代码看下整个的加密过程</p>
 <p>dataStr是我们的加密字符串，先是调用了getEncodeJsonStr，双击进入看一下</p>
-<p>![<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 6.png](<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 6.png)</p>
+<p><img src="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%206.png" alt="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%206.png"></p>
 <p>arg6是我们传入的值，我们设置断点看一下</p>
-<p>![<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 7.png](<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 7.png)</p>
+<p><img src="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%207.png" alt="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%207.png"></p>
 <p>如下图可以看到v6是我们传入的数据进行了json转换，那么我们只要跟着v6走就能找到加密过程。</p>
-<p>![<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 8.png](<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 8.png)</p>
+<p><img src="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%208.png" alt="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%208.png"></p>
 <p>我们继续往下，v6传入了encodeMesJsonByPassword中，传入了4个值分别为Token，requestAesKey，v6，TERMINAL_TYPE</p>
 <p>如下图Token是#@!1234567890!@#，requestAesKey是1234567890123456，v6是json格式的明文</p>
-<p>![<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 9.png](<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 9.png)</p>
+<p><img src="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%209.png" alt="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%209.png"></p>
 <p>TERMINAL_TYPE还不知道我们双击进去，是afAndriod</p>
-<p>![<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 10.png](<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 10.png)</p>
+<p><img src="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%2010.png" alt="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%2010.png"></p>
 <p>几个变量都知道了那我们双击进入encodeMesJsonByPassword函数，可以看到v2是一个随机的AesSecretKey，将等于过滤为空，先不管他。</p>
-<p>![<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 11.png](<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 11.png)</p>
+<p><img src="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%2011.png" alt="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%2011.png"></p>
 <p>如下图signature=md5(terminalType+token+timestamp)，terminalType=afAndriod、token=#@!1234567890!@#、timestamp为一个随机值，暂时无法构造。</p>
-<p>![<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 12.png](<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 12.png)</p>
+<p><img src="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%2012.png" alt="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%2012.png"></p>
 <p>继续往下看arg6，将&amp;timestamp=xxx+&amp;signature=xxx进行了一次base64，和上面的arg6一起进入encryptPinfo函数。上面的arg6为requestAesKey=1234567890123456</p>
-<p>![<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 13.png](<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 13.png)</p>
+<p><img src="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%2013.png" alt="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%2013.png"></p>
 <p>接着进入encryptPinfo函数，arg3=base64(&amp;timestamp=xxx+&amp;signature=xxx),arg4=1234567890123456,看下加密发现是AES/CBC/PKCS5Padding加密。</p>
-<p>![<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 14.png](<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 14.png)</p>
+<p><img src="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%2014.png" alt="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%2014.png"></p>
 <p>有了KEY，我们需要找到IV，点击进入IsIvParameter_Pinfo，如下图Iv值为0123456789abcdef</p>
-<p>![<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 15.png](<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 15.png)</p>
+<p><img src="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%2015.png" alt="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%2015.png"></p>
 <p>有了IV和KEY，还有加密算法我们需要对加密字符串进行解密，通过在线AES解密即可得到。</p>
-<p>![<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 16.png](<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 16.png)</p>
+<p><img src="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%2016.png" alt="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%2016.png"></p>
 <p>在进行一次base64，获得明文</p>
-<p>![<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 17.png](<a href="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled" target="_blank" rel="noopener">https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled</a> 17.png)</p>
+<p><img src="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%2017.png" alt="https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled%2017.png"></p>
 
     </article>
     <!-- license  -->
@@ -445,7 +445,7 @@ height:50vh;
             <p>原文作者：<a href="https://vuln.top">Fidcer</a>
             <p>原文链接：<a href="https://vuln.top/2020/09/16/JEB_Debug_Encrypt/">https://vuln.top/2020/09/16/JEB_Debug_Encrypt/</a>
             <p>发表日期：<a href="https://vuln.top/2020/09/16/JEB_Debug_Encrypt/">September 16th 2020, 12:11:34 pm</a>
-            <p>更新日期：<a href="https://vuln.top/2020/09/16/JEB_Debug_Encrypt/">September 16th 2020, 8:33:16 pm</a>
+            <p>更新日期：<a href="https://vuln.top/2020/09/16/JEB_Debug_Encrypt/">September 16th 2020, 8:36:03 pm</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -1086,6 +1086,11 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">04/26</span><a class="archive-post-title" href= "/2019/04/26/2019-48814/" >cnvd-c-2019-48814 批量getshell</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/116/" >mac上msf配置环境的坑</a>
         </li>
     
@@ -1128,34 +1133,6 @@ top:50vh;
     
         </ul>
     
-    <div class="archive-year"> 2020 </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2020/08/23/2019shendun/" >2019神盾杯</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> 2019 </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/26</span><a class="archive-post-title" href= "/2019/04/26/2019-48814/" >cnvd-c-2019-48814 批量getshell</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
     <div class="archive-year"> Invalid date </div>
     <ul class="year-list">
     
@@ -1176,6 +1153,11 @@ top:50vh;
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/16</span><a class="archive-post-title" href= "/2020/09/16/JEB_Debug_Encrypt/" >JEB_Debug_Encrypt(1)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2020/08/23/2019shendun/" >2019神盾杯</a>
         </li>
     
     
@@ -1408,20 +1390,6 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2019/02/27/casino/" >Casino Royale: 1</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/08/04/burpjs/" >jsEncrypter 加密</a>
         </li>
     
@@ -1436,7 +1404,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2019/10/15/内网渗透/" >CTF内网渗透题</a>
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2019/02/27/casino/" >Casino Royale: 1</a>
         </li>
     
     
@@ -1451,6 +1419,20 @@ top:50vh;
     
         <li class="archive-post-item">
             <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/让终端走代理的方法/" >让终端走代理的方法</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2019/10/15/内网渗透/" >CTF内网渗透题</a>
         </li>
     
     
