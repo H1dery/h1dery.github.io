@@ -346,25 +346,23 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/18/80/" >
+        <a class="abstract-title" href = "/2020/09/16/JEB_Debug_Encrypt/" >
             
-                <span>Uscms代码审计</span>
+                <span>JEB_Debug_Encrypt(1)</span>
         </a>
         <div class="abstract-content">
-            0x01 第一处：前台任意文件删除漏洞信息：前台myup.php文件最后一段存在任意文件删除代码：
-漏洞点：http://xxx/myup.php
+            JEB 动态调试 加密工具JEB3
+BurpSuite
+Genymotion
+操作先准备一个模拟器或安卓手机，配置好BurpSuite代理，可以抓取到如下数据包，Request和Response都已加密。
 
-第47行只对..做了过滤,我仍然能任意删除网站内的文件，直接构造poc,
-
-
-Burp POC：
-
-1234567891011121314POST /UsualToolCMS/myup.php HTTP/1.1Host: 192.168.235.242User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:48.0) Gecko/20100101 Firefox/48.0Accept: tex...
+用Jeb3打开Apk，进入Bytecode菜单，点击下方的字符串，搜索dataStr双击进入。（为啥要搜索它? 因为它在提交数据中是个协议头, 添加这些参数的时候想必都会在一个代码块, 所以加密函数也可能在附近。）
+![https://raw.githubusercontent.com/H1dery/h1dery/master/uPic/Untitled 1.png](https:/...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/18</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/09/16</span>
             </div>
             <!-- tags  -->
             
