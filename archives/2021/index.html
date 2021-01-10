@@ -346,49 +346,23 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/10/16/137/" >
+        <a class="abstract-title" href = "/2021/01/10/通达OA RCE ba4198aa1bc74121b6f9eca32428c756/" >
             
-                <span>豌豆杯入学ctf</span>
+                <span>通达OA文件上传&amp;文件包含导致RCE复现</span>
         </a>
         <div class="abstract-content">
-            web题
+            漏洞复现影响版本：123456V11版2017版2016版2015版2013版2013增强版
 
-1.题目:小可爱第一步肯定是绕过本地回环地址一开始想到的是x-forward-for等告诉服务器我的地址但发现没有绕过 看题目题目是说来源地址想到了referer成功绕过这里没啥思路只能爆破密码为orange 访问到另外一个页面 然后登录。 发现是一张迪丽热巴的图片 这个主管很喜欢迪丽热巴啊！！将图片下载下来，用binwalk查看下发现有压缩包!foremost下得到压缩包发现有密码这个地方解了很久发现使用Dilraba的md5。。。。得到一张图片再一次foremost得到一个压缩包成功拿到flag2.题目:单身二十年
-12345678910111213141516&lt;?...
+测试环境：111.2.191129
+
+漏洞复现：通过 /ispirit/im/upload.php 页面，未授权文件上传一个一句话文件，可获得路径和文件名。
+
+12345678910111213141516171819202122232425262728293031323334353637POST /ispirit/im/upload.php HTTP/1.1Host: 192.168.235.7Content-Length: 656Cache-Control: no-cacheUser-Ag...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/16</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/10/15/内网渗透/" >
-            
-                <span>CTF内网渗透题</span>
-        </a>
-        <div class="abstract-content">
-            
-记一次CTF内网渗透，据说是从护网复现过来的。
-
-这是第一个flag。。。既然我们知道这是wordpress正常套路那我们通过wpscan扫描一下
-
-如下图发现存在xmlrpc.php，根据经验这个php存在用户密码爆破，那我们尝试一下参考：Wordpress xmlrpc.php -common vulnerabilites &amp; how to exploit them
-通过文章发布的地方知道存在一个power_admin的用户通过xmlrpc.php验证一下不知道为什么是不是我个人问题输入正确账号密码后没有直接给我跳转到wp-admin/index.php页面还是在原来页面。...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/15</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/01/10</span>
             </div>
             <!-- tags  -->
             
