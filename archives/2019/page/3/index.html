@@ -346,12 +346,64 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/02/21/30/" >
+            
+                <span>php.ini 加固</span>
+        </a>
+        <div class="abstract-content">
+            1、register_globals
+
+ （全局变量注册开关）
+该选项在设置为On的情况下，会直接把用户GET、POST等方式提交上来的参数注册成为全局变量并初始化值为参数对应的值，使得提交参数可以直接在脚本中使用register_globals在php版本小于等于4.2.3时设置为PHP_INI_ALL,从PHP5.3.0起被废弃不推荐使用，在php5.4.0中移除了该选项
+2、allow_url_include（是否允许包含远程文件）
+这个配置指令对PHP安全的影响不可小觑。在该配置为On的情况下，他可以直接包含远程文件当存在include($var)且$var 可控的情况下，可以直...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/21</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/02/21/31/" >
             
                 <span>为某个项目写的简单生成csv的python脚本</span>
         </a>
         <div class="abstract-content">
             1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950#coding=utf-8import optparseimport randomparse = optparse.OptionParser(usage=&quot;usage:%parse [option] -n [number]&quot;,version=&quot;1.1&quot;) #用optparse库设置参数parse.add_option(&apos;-n&apos;,dest=&apos;...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/21</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/02/21/32/" >
+            
+                <span>vsftpd 配置参数</span>
+        </a>
+        <div class="abstract-content">
+            local_root #用户主目录
+listen_address #监听地址listen_address6 #ipv6 监听地址local_max_rate #本地用户传输速率(byte)anon_max_rate #匿名用户传输速率(byte)max_clients #客户端最大连接数data_connection_timeout #数据连接超时idle_session_timeout #无任何操作超时anonymous_enable #是否允许匿名用户登陆local_enable #是否允许所在系统的用户登陆write_enable #允许进行写权限local_umask #对应文件...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -404,74 +456,13 @@ nano /etc/dhcp/dhcpd.conf
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/02/21/38/" >
+        <a class="abstract-title" href = "/2019/02/21/37/" >
             
-                <span>apache 使用 mysql基本身份验证</span>
+                <span>centos 6.5 自动配置vsftp http dns</span>
         </a>
         <div class="abstract-content">
-            第一步安装所有需要的组建(mysql,apache,apache_mysql认证)
-yum install -y mysql-server mod_auth_mysql mysql httpd
-
-首先配置mysql 账号密码（这里我们就设置全明文验证）设置mysql密码 mysqladmin -u root password 123456如果mysql 密码忘记了可以用这个命令mysqladmin -u root flush-privileges password "newpassword"
-登陆mysqlmysql -u root -p创建数据库create database http...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/21</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/02/21/32/" >
-            
-                <span>vsftpd 配置参数</span>
-        </a>
-        <div class="abstract-content">
-            local_root #用户主目录
-listen_address #监听地址listen_address6 #ipv6 监听地址local_max_rate #本地用户传输速率(byte)anon_max_rate #匿名用户传输速率(byte)max_clients #客户端最大连接数data_connection_timeout #数据连接超时idle_session_timeout #无任何操作超时anonymous_enable #是否允许匿名用户登陆local_enable #是否允许所在系统的用户登陆write_enable #允许进行写权限local_umask #对应文件...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/21</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/02/21/28/" >
-            
-                <span>centos6.5 vsftpd 虚拟用户</span>
-        </a>
-        <div class="abstract-content">
-            ps:这是我很久以前写的一篇文章可能表达的不是很清楚 有什么问题可以问我
-##环境##SERVER:CENTOS6.5CLIENT:WINDOWS10
-##要求##
-用windows10 访问 centos的vsftpd 使用虚拟用户ftp 密码为abc.123 进行访问使其有删除，写入权限
-安装vsftpd 服务
-
-创建一个文件存放用户名和密码格式大约为:
-1234user1passworduser2password
-
-
-
-使用db_load 命令生成出虚拟用户口令认证文件(如没有此命令 yum install db4-utils 进行安装)选项-T允许应用程序能够文本文件转译载入进数...
+            环境:centos6.5 配置本地yum源
+python2.7[vplayer url=”http://122.228.238.158/vhot2.qqvideo.tc.qq.com/AOREL4WspnvAOiKO2cu7iWM8_Jkp7CQb0aobV2cmLjNE/r0604x83i0v.mp4?sdtfrom=v1010&amp;guid=6ca265bc1a779fedafa760ae8c67e970&amp;vkey=9769DF585EE830B610269355CBFC259995D4ABA72034F79CA48EDB29EF38A798C6385ED8D040CD7...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -514,13 +505,16 @@ listen_address #监听地址listen_address6 #ipv6 监听地址local_max_rate #�
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/02/21/37/" >
+        <a class="abstract-title" href = "/2019/02/21/38/" >
             
-                <span>centos 6.5 自动配置vsftp http dns</span>
+                <span>apache 使用 mysql基本身份验证</span>
         </a>
         <div class="abstract-content">
-            环境:centos6.5 配置本地yum源
-python2.7[vplayer url=”http://122.228.238.158/vhot2.qqvideo.tc.qq.com/AOREL4WspnvAOiKO2cu7iWM8_Jkp7CQb0aobV2cmLjNE/r0604x83i0v.mp4?sdtfrom=v1010&amp;guid=6ca265bc1a779fedafa760ae8c67e970&amp;vkey=9769DF585EE830B610269355CBFC259995D4ABA72034F79CA48EDB29EF38A798C6385ED8D040CD7...
+            第一步安装所有需要的组建(mysql,apache,apache_mysql认证)
+yum install -y mysql-server mod_auth_mysql mysql httpd
+
+首先配置mysql 账号密码（这里我们就设置全明文验证）设置mysql密码 mysqladmin -u root password 123456如果mysql 密码忘记了可以用这个命令mysqladmin -u root flush-privileges password "newpassword"
+登陆mysqlmysql -u root -p创建数据库create database http...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -1212,6 +1206,10 @@ python2.7[vplayer url=”http://122.228.238.158/vhot2.qqvideo.tc.qq.com/AOREL4Ws
     
     
     
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 42
@@ -1244,11 +1242,6 @@ python2.7[vplayer url=”http://122.228.238.158/vhot2.qqvideo.tc.qq.com/AOREL4Ws
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2021/09/05/16308495601985/" >观安杯2021 Writeup</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">07/13</span><a class="archive-post-title" href= "/2021/07/13/16261510553094/" >卫生健康行业CTF</a>
         </li>
     
@@ -1274,11 +1267,6 @@ python2.7[vplayer url=”http://122.228.238.158/vhot2.qqvideo.tc.qq.com/AOREL4Ws
     
         <li class="archive-post-item">
             <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2020/08/23/2019shendun/" >2019神盾杯</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">07/15</span><a class="archive-post-title" href= "/2020/07/15/wuyishan/" >2019国庆武夷山骑行</a>
         </li>
     
     
@@ -1322,6 +1310,11 @@ python2.7[vplayer url=”http://122.228.238.158/vhot2.qqvideo.tc.qq.com/AOREL4Ws
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">10/15</span><a class="archive-post-title" href= "/2019/10/15/内网渗透/" >CTF内网渗透题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">07/18</span><a class="archive-post-title" href= "/2019/07/18/80/" >Uscms代码审计</a>
         </li>
     
@@ -1337,7 +1330,7 @@ python2.7[vplayer url=”http://122.228.238.158/vhot2.qqvideo.tc.qq.com/AOREL4Ws
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/116/" >mac上msf配置环境的坑</a>
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/124/" >记录下一道web题</a>
         </li>
     
     
@@ -1347,7 +1340,7 @@ python2.7[vplayer url=”http://122.228.238.158/vhot2.qqvideo.tc.qq.com/AOREL4Ws
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/124/" >记录下一道web题</a>
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/116/" >mac上msf配置环境的坑</a>
         </li>
     
     
@@ -1370,12 +1363,31 @@ python2.7[vplayer url=”http://122.228.238.158/vhot2.qqvideo.tc.qq.com/AOREL4Ws
     
         </ul>
     
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/2021/09/05/16308495601985/" >观安杯2021 Writeup</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">08/04</span><a class="archive-post-title" href= "/2020/08/04/burpjs/" >jsEncrypter 加密</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/15</span><a class="archive-post-title" href= "/2020/07/15/wuyishan/" >2019国庆武夷山骑行</a>
         </li>
     
     
@@ -1386,11 +1398,6 @@ python2.7[vplayer url=”http://122.228.238.158/vhot2.qqvideo.tc.qq.com/AOREL4Ws
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/15</span><a class="archive-post-title" href= "/2019/10/15/内网渗透/" >CTF内网渗透题</a>
-        </li>
     
     
         <li class="archive-post-item">
@@ -1429,6 +1436,11 @@ python2.7[vplayer url=”http://122.228.238.158/vhot2.qqvideo.tc.qq.com/AOREL4Ws
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/28/" >centos6.5 vsftpd 虚拟用户</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/21/" >某CMS V5.7 SP2 后台Getshell</a>
         </li>
     
@@ -1444,22 +1456,17 @@ python2.7[vplayer url=”http://122.228.238.158/vhot2.qqvideo.tc.qq.com/AOREL4Ws
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/27/" >centos6.5 搭建pxe 服务器</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/38/" >apache 使用 mysql基本身份验证</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/32/" >vsftpd 配置参数</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/28/" >centos6.5 vsftpd 虚拟用户</a>
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/27/" >centos6.5 搭建pxe 服务器</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/37/" >centos 6.5 自动配置vsftp http dns</a>
         </li>
     
     
@@ -1469,7 +1476,7 @@ python2.7[vplayer url=”http://122.228.238.158/vhot2.qqvideo.tc.qq.com/AOREL4Ws
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/37/" >centos 6.5 自动配置vsftp http dns</a>
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/38/" >apache 使用 mysql基本身份验证</a>
         </li>
     
     
