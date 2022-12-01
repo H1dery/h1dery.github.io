@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://vuln.top/about/index.html</loc>
+    
+    <lastmod>2022-10-20T02:39:35.485Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://vuln.top/2022/02/27/weixin/</loc>
     
     <lastmod>2022-02-28T03:42:53.154Z</lastmod>
@@ -103,13 +110,6 @@
     <loc>https://vuln.top/2020/07/15/wuyishan/</loc>
     
     <lastmod>2020-07-15T13:24:53.170Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://vuln.top/about/index.html</loc>
-    
-    <lastmod>2020-07-15T12:59:21.750Z</lastmod>
     
   </url>
   

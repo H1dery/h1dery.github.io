@@ -565,24 +565,23 @@ CVE-2017-11882漏洞利用复现2017年11月14日微软发布了潜伏17年之�
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/02/21/27/" >
+        <a class="abstract-title" href = "/2019/02/21/28/" >
             
-                <span>centos6.5 搭建pxe 服务器</span>
+                <span>centos6.5 vsftpd 虚拟用户</span>
         </a>
         <div class="abstract-content">
-            搭建pxe服务器实现无盘批量安装
+            ps:这是我很久以前写的一篇文章可能表达的不是很清楚 有什么问题可以问我
+##环境##SERVER:CENTOS6.5CLIENT:WINDOWS10
+##要求##
+用windows10 访问 centos的vsftpd 使用虚拟用户ftp 密码为abc.123 进行访问使其有删除，写入权限
+安装vsftpd 服务
 
-服务端:centos6.5 ip:10.100.100.10
-首先我们需要安装的服务
-
-yum install vsftpd tftp-server dhcp -y
-
-配置DHCP服务器DHCP配置文件默认在/etc/dhcp/dhcpd.conf
-
-nano /etc/dhcp/dhcpd.conf
+创建一个文件存放用户名和密码格式大约为:
+1234user1passworduser2password
 
 
-按照图片写上去range #定义获取到的网段option domain-name-servers #定义dns服务器option domain-name  #所在域的名称option routers  #网关default-lease-time #默...
+
+使用db_load 命令生成出虚拟用户口令认证文件(如没有此命令 yum install db4-utils 进行安装)选项-T允许应用程序能够文本文件转译载入进数...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -1272,6 +1271,8 @@ nano /etc/dhcp/dhcpd.conf
     
     
     
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 42
@@ -1285,6 +1286,20 @@ nano /etc/dhcp/dhcpd.conf
     
     
     
+    <div class="archive-year"> 2022 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/27</span><a class="archive-post-title" href= "/2022/02/27/weixin/" >MAC下微信浏览器可能可行的利用方式</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
     <div class="archive-year"> 2021 </div>
     <ul class="year-list">
     
@@ -1296,6 +1311,11 @@ nano /etc/dhcp/dhcpd.conf
     
         <li class="archive-post-item">
             <span class="archive-post-date">07/13</span><a class="archive-post-title" href= "/2021/07/13/16261510553094/" >卫生健康行业CTF</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/10</span><a class="archive-post-title" href= "/2021/01/10/通达OA RCE ba4198aa1bc74121b6f9eca32428c756/" >通达OA文件上传&文件包含导致RCE复现</a>
         </li>
     
     
@@ -1334,17 +1354,7 @@ nano /etc/dhcp/dhcpd.conf
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/14</span><a class="archive-post-title" href= "/2020/07/14/OSCP Buffer Overflows brainpan 473f8d6971d444c2a219b3ce9b976cd9/" >OSCP-Buffer Overflows brainpan</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">06/18</span><a class="archive-post-title" href= "/2020/06/18/HTTP f73fc507cac54ad8a67d9e8bbe5f8f04/" >HTTP 走私协议</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/18</span><a class="archive-post-title" href= "/2020/06/18/bypass/" >Bypass Waf Script</a>
         </li>
     
     
@@ -1368,22 +1378,7 @@ nano /etc/dhcp/dhcpd.conf
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/15</span><a class="archive-post-title" href= "/2019/10/15/内网渗透/" >CTF内网渗透题</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">07/18</span><a class="archive-post-title" href= "/2019/07/18/80/" >Uscms代码审计</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">04/26</span><a class="archive-post-title" href= "/2019/04/26/2019-48814/" >cnvd-c-2019-48814 批量getshell</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/19</span><a class="archive-post-title" href= "/2019/04/19/Retaddr/" >Retaddr</a>
         </li>
     
     
@@ -1393,12 +1388,27 @@ nano /etc/dhcp/dhcpd.conf
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/116/" >mac上msf配置环境的坑</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/10/" >python socket 用法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/116/" >mac上msf配置环境的坑</a>
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/58/" >vpn几种类型优缺点</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/28/" >centos6.5 vsftpd 虚拟用户</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/21/" >某CMS V5.7 SP2 后台Getshell</a>
         </li>
     
     
@@ -1421,26 +1431,17 @@ nano /etc/dhcp/dhcpd.conf
     
         </ul>
     
-    <div class="archive-year"> 2022 </div>
+    <div class="archive-year"> 2020 </div>
     <ul class="year-list">
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/27</span><a class="archive-post-title" href= "/2022/02/27/weixin/" >MAC下微信浏览器可能可行的利用方式</a>
+            <span class="archive-post-date">07/14</span><a class="archive-post-title" href= "/2020/07/14/OSCP Buffer Overflows brainpan 473f8d6971d444c2a219b3ce9b976cd9/" >OSCP-Buffer Overflows brainpan</a>
         </li>
     
     
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> 2021 </div>
-    <ul class="year-list">
-    
-    
         <li class="archive-post-item">
-            <span class="archive-post-date">01/10</span><a class="archive-post-title" href= "/2021/01/10/通达OA RCE ba4198aa1bc74121b6f9eca32428c756/" >通达OA文件上传&文件包含导致RCE复现</a>
+            <span class="archive-post-date">06/18</span><a class="archive-post-title" href= "/2020/06/18/bypass/" >Bypass Waf Script</a>
         </li>
     
     
@@ -1454,7 +1455,22 @@ nano /etc/dhcp/dhcpd.conf
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">10/15</span><a class="archive-post-title" href= "/2019/10/15/内网渗透/" >CTF内网渗透题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/09</span><a class="archive-post-title" href= "/2019/09/09/pentest/" >自己整理的信息收集1.0思维导图</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/18</span><a class="archive-post-title" href= "/2019/07/18/80/" >Uscms代码审计</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/19</span><a class="archive-post-title" href= "/2019/04/19/Retaddr/" >Retaddr</a>
         </li>
     
     
@@ -1474,27 +1490,7 @@ nano /etc/dhcp/dhcpd.conf
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/58/" >vpn几种类型优缺点</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/77/" >isg 3道web wp</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/164/" >Web中的条件竞争漏洞</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/27/" >centos6.5 搭建pxe 服务器</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/21/" >某CMS V5.7 SP2 后台Getshell</a>
         </li>
     
     
@@ -1504,17 +1500,7 @@ nano /etc/dhcp/dhcpd.conf
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/28/" >centos6.5 vsftpd 虚拟用户</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/31/" >为某个项目写的简单生成csv的python脚本</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/32/" >vsftpd 配置参数</a>
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/164/" >Web中的条件竞争漏洞</a>
         </li>
     
     
@@ -1524,12 +1510,7 @@ nano /etc/dhcp/dhcpd.conf
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/40/" >Linux软件安装 ./configure,make,make install的作用</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/37/" >centos 6.5 自动配置vsftp http dns</a>
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/31/" >为某个项目写的简单生成csv的python脚本</a>
         </li>
     
     
@@ -1539,7 +1520,27 @@ nano /etc/dhcp/dhcpd.conf
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/40/" >Linux软件安装 ./configure,make,make install的作用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/27/" >centos6.5 搭建pxe 服务器</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/37/" >centos 6.5 自动配置vsftp http dns</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/66/" >CVE-2017-11882复现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/32/" >vsftpd 配置参数</a>
         </li>
     
     
