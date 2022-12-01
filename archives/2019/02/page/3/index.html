@@ -346,13 +346,14 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/02/21/32/" >
+        <a class="abstract-title" href = "/2019/02/21/40/" >
             
-                <span>vsftpd 配置参数</span>
+                <span>Linux软件安装 ./configure,make,make install的作用</span>
         </a>
         <div class="abstract-content">
-            local_root #用户主目录
-listen_address #监听地址listen_address6 #ipv6 监听地址local_max_rate #本地用户传输速率(byte)anon_max_rate #匿名用户传输速率(byte)max_clients #客户端最大连接数data_connection_timeout #数据连接超时idle_session_timeout #无任何操作超时anonymous_enable #是否允许匿名用户登陆local_enable #是否允许所在系统的用户登陆write_enable #允许进行写权限local_umask #对应文件...
+            自行安装编译Linux软件过程中会执行三个步骤：./configure,make,make install。这三个步骤在安装过程中到底起到什么作用，先前一直糊里糊涂的，今天就来一起学习下。
+
+./configure(配置）configure会根据当前系统环境和指定参数生成makefile文件，为下一步的编译做准备，你可以通过在 configure 后加上参数来对安装进行控制，比如代码:./configure –prefix=/usr 意思是将该软件安装在 /usr 下面，执行文件就会安装在 /usr/bin （而不是默认的 /usr/local/bin),资源文件就会安装在 /usr/s...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -410,7 +411,7 @@ listen_address #监听地址listen_address6 #ipv6 监听地址local_max_rate #�
     
         
             
-                <a href="mailto:524470869@qq.com" class="iconfont-archer email" title=email ></a>
+                <a href="mailto:i@52sec.me" class="iconfont-archer email" title=email ></a>
             
         
     
@@ -1127,6 +1128,11 @@ listen_address #监听地址listen_address6 #ipv6 监听地址local_max_rate #�
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">07/14</span><a class="archive-post-title" href= "/2020/07/14/OSCP Buffer Overflows brainpan 473f8d6971d444c2a219b3ce9b976cd9/" >OSCP-Buffer Overflows brainpan</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">06/18</span><a class="archive-post-title" href= "/2020/06/18/HTTP f73fc507cac54ad8a67d9e8bbe5f8f04/" >HTTP 走私协议</a>
         </li>
     
@@ -1151,7 +1157,22 @@ listen_address #监听地址listen_address6 #ipv6 监听地址local_max_rate #�
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">07/18</span><a class="archive-post-title" href= "/2019/07/18/80/" >Uscms代码审计</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">04/26</span><a class="archive-post-title" href= "/2019/04/26/2019-48814/" >cnvd-c-2019-48814 批量getshell</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/19</span><a class="archive-post-title" href= "/2019/04/19/Retaddr/" >Retaddr</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/10/" >python socket 用法</a>
         </li>
     
     
@@ -1162,26 +1183,6 @@ listen_address #监听地址listen_address6 #ipv6 监听地址local_max_rate #�
     
         <li class="archive-post-item">
             <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/116/" >mac上msf配置环境的坑</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/10/" >python socket 用法</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/58/" >vpn几种类型优缺点</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/28/" >centos6.5 vsftpd 虚拟用户</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/21/" >某CMS V5.7 SP2 后台Getshell</a>
         </li>
     
     
@@ -1209,11 +1210,6 @@ listen_address #监听地址listen_address6 #ipv6 监听地址local_max_rate #�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/14</span><a class="archive-post-title" href= "/2020/07/14/OSCP Buffer Overflows brainpan 473f8d6971d444c2a219b3ce9b976cd9/" >OSCP-Buffer Overflows brainpan</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">06/18</span><a class="archive-post-title" href= "/2020/06/18/bypass/" >Bypass Waf Script</a>
         </li>
     
@@ -1238,16 +1234,6 @@ listen_address #监听地址listen_address6 #ipv6 监听地址local_max_rate #�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/18</span><a class="archive-post-title" href= "/2019/07/18/80/" >Uscms代码审计</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/19</span><a class="archive-post-title" href= "/2019/04/19/Retaddr/" >Retaddr</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">02/27</span><a class="archive-post-title" href= "/2019/02/27/casino/" >Casino Royale: 1</a>
         </li>
     
@@ -1263,12 +1249,12 @@ listen_address #监听地址listen_address6 #ipv6 监听地址local_max_rate #�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/77/" >isg 3道web wp</a>
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/58/" >vpn几种类型优缺点</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/30/" >php.ini 加固</a>
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/77/" >isg 3道web wp</a>
         </li>
     
     
@@ -1278,22 +1264,7 @@ listen_address #监听地址listen_address6 #ipv6 监听地址local_max_rate #�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/38/" >apache 使用 mysql基本身份验证</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/31/" >为某个项目写的简单生成csv的python脚本</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/45/" >msfvenom 进阶</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/40/" >Linux软件安装 ./configure,make,make install的作用</a>
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/21/" >某CMS V5.7 SP2 后台Getshell</a>
         </li>
     
     
@@ -1303,17 +1274,47 @@ listen_address #监听地址listen_address6 #ipv6 监听地址local_max_rate #�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/37/" >centos 6.5 自动配置vsftp http dns</a>
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/28/" >centos6.5 vsftpd 虚拟用户</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/66/" >CVE-2017-11882复现</a>
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/31/" >为某个项目写的简单生成csv的python脚本</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/32/" >vsftpd 配置参数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/30/" >php.ini 加固</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/37/" >centos 6.5 自动配置vsftp http dns</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/38/" >apache 使用 mysql基本身份验证</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/40/" >Linux软件安装 ./configure,make,make install的作用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/45/" >msfvenom 进阶</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2019/02/21/66/" >CVE-2017-11882复现</a>
         </li>
     
     
